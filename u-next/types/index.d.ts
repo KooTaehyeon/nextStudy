@@ -14,6 +14,7 @@ export type Props = {
 };
 export type MeetupData = {
   [x: string]: any;
+  id?: string;
   title: string;
   image: string;
   address: string;

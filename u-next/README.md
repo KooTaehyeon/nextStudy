@@ -2,6 +2,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
+ 배포사이트 :https://next-study-j3n7.vercel.app/
 First, run the development server:
 
 ```bash

@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { MeetupData } from '@/types';
 import axios from 'axios';
 import { MongoClient } from 'mongodb';
+import Head from 'next/head';
 // const DUMY = [
 //   {
 //     id: 'm1',
@@ -25,6 +26,10 @@ import { MongoClient } from 'mongodb';
 const HomePage = (props: MeetupData) => {
   return (
     <>
+      <Head>
+        <title>next&&Ts 학습용 페이지</title>
+        <meta name='next&TS 학습' content='next동작방식과 ts에 익숙해지자' />
+      </Head>
       <MeetupList meetups={props.meetups} />
     </>
   );

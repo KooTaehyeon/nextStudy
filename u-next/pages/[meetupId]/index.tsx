@@ -1,18 +1,25 @@
 import MeetupDetails from '../../components/meetups/MeetupDetail';
 import { MeetupData } from '@/types';
 import { MongoClient, ObjectId } from 'mongodb';
+import Head from 'next/head';
 
 const MeetupDetail = (props: MeetupData) => {
   console.log(props);
 
   return (
-    <MeetupDetails
-      image={props.meetupData.image}
-      title={props.meetupData.title}
-      address={props.meetupData.address}
-      description={props.meetupData.description}
-      // id={''}
-    />
+    <>
+      <Head>
+        <title>{props.meetupData.title}</title>
+        <meta name={'description'} content={props.meetupData.description} />
+      </Head>
+      <MeetupDetails
+        image={props.meetupData.image}
+        title={props.meetupData.title}
+        address={props.meetupData.address}
+        description={props.meetupData.description}
+        // id={''}
+      />
+    </>
   );
 };
 

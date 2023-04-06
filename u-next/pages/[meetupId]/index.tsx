@@ -41,7 +41,9 @@ export async function getStaticPaths() {
   };
 }
 
-export const getStaticProps = async (context: any) => {
+export const getStaticProps = async (context: {
+  params: { meetupId: string };
+}) => {
   // 프리랜더링
   const meetupId = context.params.meetupId;
 

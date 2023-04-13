@@ -21,6 +21,9 @@ export default function Home() {
         <li>
           <Link href={'/sub/2'}> /page/sub/[id].js</Link>
         </li>
+        <li>
+          <Link href={'/sub/fetch'}> /page/sub/fetch.js</Link>
+        </li>
       </ul>
     </div>
   );

@@ -6,5 +6,8 @@ export const counterSile = createSlice({
     up: (state: any, action: { payload: number }) => {
       state.value = state.value + action.payload;
     },
+    down: (state: any, action: { payload: number }) => {
+      state.value = state.value - action.payload;
+    },
   },
 });

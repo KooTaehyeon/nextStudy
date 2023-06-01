@@ -17,7 +17,7 @@ export const getServerSideProps = async (context: SSRContext) => {
   const { params, req, res } = context;
   // console.log(req, 'req');
   // console.log(res, 'res');
-
+  console.log('server');
   return {
     props: {
       username: 'xogus18',

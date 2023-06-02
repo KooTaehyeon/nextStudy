@@ -1,17 +1,25 @@
 import React from 'react';
 import { useRouter } from 'next/router';
-import { getEventById } from '../../../\bdummy';
+import { getEventById, getAllEvents } from '@/helpers/api-util';
 import EventSummary from '../../components/events/event-detail/event-summary';
 import EventLogistics from '@/components/events/event-detail/event-logistics';
 import EventContent from '@/components/events/event-detail/event-content';
 import ErrorAlert from '@/components/ui/error-alert';
-const EventDetailPage = () => {
-  const router = useRouter();
-  console.log('event', router);
-  const eventId = router.query.id;
-  console.log('eventId', typeof eventId);
-  const event = getEventById(eventId as string);
-  console.log(event, 'eventdes');
+const EventDetailPage = (props: {
+  selectedEvent: {
+    title: string;
+    date: string;
+    image: string;
+    loctation: string;
+    description: string;
+  };
+}) => {
+  const event = props.selectedEvent;
+  console.log(props);
+
+  // console.log('eventId', typeof eventId);
+  // const event = getEventById(eventId as string);
+  // console.log(event, 'eventdes');
 
   if (!event) {
     return (
@@ -36,6 +44,29 @@ const EventDetailPage = () => {
       </EventContent>
     </>
   );
+};
+
+export const getStaticProps = async (context: any) => {
+  const eventId = context.params.id;
+  console.log(eventId, 'p');
+
+  const event = await getEventById(eventId);
+  console.log(event, 'eeeeeeee');
+
+  return {
+    props: {
+      selectedEvent: event,
+    },
+  };
+};
+export const getStaticPaths = async () => {
+  const events = await getAllEvents();
+
+  const paths = events.map((item) => ({ params: { id: item.id } }));
+  return {
+    paths: paths,
+    fallback: 'blocking',
+  };
 };
 
 export default EventDetailPage;

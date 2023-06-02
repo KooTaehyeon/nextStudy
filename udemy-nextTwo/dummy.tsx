@@ -33,10 +33,6 @@ const DUMY: dumyProps[] = [
   },
 ];
 
-export function getFeaturedEvents() {
-  return DUMY.filter((event) => event.isFeatured);
-}
-
 export function getAllEvents() {
   return DUMY;
 }
@@ -52,8 +48,4 @@ export function getFilteredEvents(dateFilter: { year: number; month: number }) {
   });
 
   return filteredEvents;
-}
-
-export function getEventById(id: string) {
-  return DUMY.find((event) => event.id === id);
 }

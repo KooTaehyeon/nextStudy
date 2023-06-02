@@ -1,14 +1,24 @@
 import React from 'react';
-import { getFeaturedEvents } from '../../\bdummy';
+
 import EventList from '@/components/events/event-list';
-const HomePage = () => {
-  const featuredEvents = getFeaturedEvents();
+import { getFeaturedEvents } from '@/helpers/api-util';
+const HomePage = (props: { events: [] }) => {
+  console.log(props);
 
   return (
     <div>
-      <EventList items={featuredEvents} />
+      <EventList items={props.events} />
     </div>
   );
+};
+export const getStaticProps = async () => {
+  const featuredEvents = await getFeaturedEvents();
+
+  return {
+    props: {
+      events: featuredEvents,
+    },
+  };
 };
 
 export default HomePage;

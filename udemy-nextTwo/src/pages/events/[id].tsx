@@ -1,10 +1,15 @@
 import React from 'react';
 import { useRouter } from 'next/router';
-import { getEventById, getAllEvents } from '@/helpers/api-util';
+import {
+  getEventById,
+  getAllEvents,
+  getFeaturedEvents,
+} from '@/helpers/api-util';
 import EventSummary from '../../components/events/event-detail/event-summary';
 import EventLogistics from '@/components/events/event-detail/event-logistics';
 import EventContent from '@/components/events/event-detail/event-content';
 import ErrorAlert from '@/components/ui/error-alert';
+import Head from 'next/head';
 const EventDetailPage = (props: {
   selectedEvent: {
     title: string;
@@ -15,7 +20,6 @@ const EventDetailPage = (props: {
   };
 }) => {
   const event = props.selectedEvent;
-  console.log(props);
 
   // console.log('eventId', typeof eventId);
   // const event = getEventById(eventId as string);
@@ -24,14 +28,18 @@ const EventDetailPage = (props: {
   if (!event) {
     return (
       <>
-        <ErrorAlert>
-          <p>no event found!</p>
-        </ErrorAlert>
+        <div className='center'>
+          <p>loading...</p>
+        </div>
       </>
     );
   }
   return (
     <>
+      <Head>
+        <title>{event.title}</title>
+        <meta name='description' content={event.description} />
+      </Head>
       <EventSummary title={event.title} />
       <EventLogistics
         date={event.date}
@@ -48,21 +56,22 @@ const EventDetailPage = (props: {
 
 export const getStaticProps = async (context: any) => {
   const eventId = context.params.id;
-  console.log(eventId, 'p');
 
   const event = await getEventById(eventId);
-  console.log(event, 'eeeeeeee');
+  console.log('재요청');
 
   return {
     props: {
       selectedEvent: event,
     },
+    revalidate: 30,
   };
 };
 export const getStaticPaths = async () => {
-  const events = await getAllEvents();
+  const events = await getFeaturedEvents();
 
   const paths = events.map((item) => ({ params: { id: item.id } }));
+
   return {
     paths: paths,
     fallback: 'blocking',

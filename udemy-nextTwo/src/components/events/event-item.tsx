@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import styles from '../../styles/event-item.module.css';
 import Button from '../ui/button';
 import DateIcon from '../icons/date-icon';
@@ -17,11 +18,13 @@ const EventItem = (props: any) => {
   const exploreLink = `/events/${id}`;
   return (
     <li className={styles.item}>
-      <img
+      <Image
         src={image}
         alt={title}
-        style={{ width: '300px', height: '300px' }}
-        onError={image}
+        width={250}
+        height={250}
+        // style={{ width: '300px', height: '300px' }}
+        // onError={image}
       />
       <div className={styles.content}>
         <div className={styles.summary}>

@@ -1,14 +1,21 @@
 import React from 'react';
-
+import Head from 'next/head';
 import EventList from '@/components/events/event-list';
 import { getFeaturedEvents } from '@/helpers/api-util';
 const HomePage = (props: { events: [] }) => {
-  console.log(props);
-
   return (
-    <div>
-      <EventList items={props.events} />
-    </div>
+    <>
+      <Head>
+        <title>Next!!</title>
+        <meta
+          name='description'
+          content='Find a lot of great events that allow you to evolve...'
+        />
+      </Head>
+      <div>
+        <EventList items={props.events} />
+      </div>
+    </>
   );
 };
 export const getStaticProps = async () => {
@@ -18,6 +25,7 @@ export const getStaticProps = async () => {
     props: {
       events: featuredEvents,
     },
+    revalidate: 1800,
   };
 };
 

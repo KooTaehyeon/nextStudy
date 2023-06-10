@@ -1,11 +1,10 @@
-import Head from 'next/head';
-import Image from 'next/image';
 import { Inter } from 'next/font/google';
-import styles from '@/styles/Home.module.css';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
+import axios from 'axios';
 const inter = Inter({ subsets: ['latin'] });
 
 export default function Home() {
+  const [data, setData] = useState([]);
   const emailInputRef = useRef<HTMLInputElement>(null);
   const feedBackInputRef = useRef<HTMLTextAreaElement>(null);
 
@@ -13,9 +12,24 @@ export default function Home() {
     e.preventDefault();
     const enteredEmail = emailInputRef.current?.value;
     const enteredfeedBack = feedBackInputRef.current?.value;
+    const reqBody = {
+      email: enteredEmail,
+      text: enteredfeedBack,
+    };
 
-    // fetch();
+    axios.post('api/feedback', reqBody, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
   };
+
+  const loadFeedback = async () => {
+    const data: any = await axios.get('/api/feedback');
+
+    setData(data.data.feedback);
+  };
+  console.log(data);
 
   return (
     <>
@@ -32,6 +46,13 @@ export default function Home() {
           </div>
           <button>Send Feedback</button>
         </form>
+        <hr />
+        <button onClick={loadFeedback}>load Feedback</button>
+        <ul>
+          {data.map((item: { id: string; email: string; text: string }) => (
+            <li key={item.id}>{item.text}</li>
+          ))}
+        </ul>
       </div>
     </>
   );

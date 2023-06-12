@@ -1,13 +1,14 @@
 import { Inter } from 'next/font/google';
 import { useRef, useState } from 'react';
 import axios from 'axios';
+import { useRouter } from 'next/router';
 const inter = Inter({ subsets: ['latin'] });
 
 export default function Home() {
-  const [data, setData] = useState([]);
+  // const [data, setData] = useState([]);
   const emailInputRef = useRef<HTMLInputElement>(null);
   const feedBackInputRef = useRef<HTMLTextAreaElement>(null);
-
+  const router = useRouter();
   const submutFormHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const enteredEmail = emailInputRef.current?.value;
@@ -25,11 +26,8 @@ export default function Home() {
   };
 
   const loadFeedback = async () => {
-    const data: any = await axios.get('/api/feedback');
-
-    setData(data.data.feedback);
+    router.push('/feedback');
   };
-  console.log(data);
 
   return (
     <>
@@ -48,11 +46,11 @@ export default function Home() {
         </form>
         <hr />
         <button onClick={loadFeedback}>load Feedback</button>
-        <ul>
+        {/* <ul>
           {data.map((item: { id: string; email: string; text: string }) => (
             <li key={item.id}>{item.text}</li>
           ))}
-        </ul>
+        </ul> */}
       </div>
     </>
   );

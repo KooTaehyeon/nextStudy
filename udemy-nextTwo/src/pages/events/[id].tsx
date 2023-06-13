@@ -10,8 +10,10 @@ import EventLogistics from '@/components/events/event-detail/event-logistics';
 import EventContent from '@/components/events/event-detail/event-content';
 import ErrorAlert from '@/components/ui/error-alert';
 import Head from 'next/head';
+import Comments from '@/components/input/comments';
 const EventDetailPage = (props: {
   selectedEvent: {
+    id: string;
     title: string;
     date: string;
     image: string;
@@ -34,6 +36,7 @@ const EventDetailPage = (props: {
       </>
     );
   }
+
   return (
     <>
       <Head>
@@ -50,6 +53,7 @@ const EventDetailPage = (props: {
       <EventContent>
         <p>{event.description}</p>
       </EventContent>
+      <Comments eventId={event.id} />
     </>
   );
 };

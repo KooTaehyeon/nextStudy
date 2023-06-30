@@ -3,7 +3,7 @@ export async function getAllEvents() {
     `https://udemy-next-bbd80-default-rtdb.firebaseio.com/events.json`
   );
   const data = await response.json();
-  // console.log(data, 'data');
+  console.log(data, 'data');
 
   const events = [];
   for (const key in data) {
@@ -12,7 +12,6 @@ export async function getAllEvents() {
       ...data[key],
     });
   }
-  // console.log(events, 'events');
 
   return events;
 }

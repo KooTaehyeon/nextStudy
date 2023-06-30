@@ -1,7 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { MongoClient, ServerApiVersion } from 'mongodb';
+import { connectDataBase, insertDocument } from '../../helpers/db-util';
+
 const uri =
-  'mongodb+srv://vcro12123:05321zxc@cluster0.6po88go.mongodb.net/newsletter';
+  'mongodb+srv://vcro12123:05321zxc@cluster0.6po88go.mongodb.net/events';
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'POST') {
@@ -11,12 +12,21 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
       res.status(422).json({ message: 'invalid email address.' });
       return;
     }
-    const client = await MongoClient.connect(uri);
-    const db = client.db();
-    await db.collection('emails').insertOne({
-      email: userEmail,
-    });
-    client.close;
+    let client: any;
+    try {
+      client = await connectDataBase(uri);
+    } catch (err) {
+      res.status(500).json({ message: 'DB 불러오기실패' });
+      return;
+    }
+    try {
+      await insertDocument(client, 'newletter', { email: userEmail });
+      client.close;
+    } catch (err) {
+      res.status(500).json({ message: '데이터 insert 실패 ' });
+      return;
+    }
+
     console.log(userEmail);
     res.status(201).json({ message: '성공' });
   }

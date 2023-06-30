@@ -18,7 +18,7 @@ function Comments(props: any) {
         },
       })
         .then((res) => res.json())
-        .then((data) => setComments(data.comment));
+        .then((data) => setComments(data.comments));
     }
   }, [eventId, showComments]);
 

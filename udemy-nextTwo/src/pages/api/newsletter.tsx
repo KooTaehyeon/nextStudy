@@ -2,9 +2,11 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import { connectDataBase, insertDocument } from '../../helpers/db-util';
 
 const uri =
-  'mongodb+srv://vcro12123:05321zxc@cluster0.6po88go.mongodb.net/events';
+  'mongodb+srv://vcro12123:05321zxc@cluster0.6po88go.mongodb.net/events?retryWrites=true&w=majority';
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
+  // console.log(res, 'resss');
+
   if (req.method === 'POST') {
     const userEmail = req.body.email;
 

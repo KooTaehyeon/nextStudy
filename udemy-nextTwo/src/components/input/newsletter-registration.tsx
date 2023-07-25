@@ -1,20 +1,7 @@
 import classes from './newsletter-registration.module.css';
 import { useRef, useContext } from 'react';
 import NotificationContext from '@/store/notification-context';
-
-type NotificationProps = {
-  notification: null | {
-    title: string;
-    message: string;
-    status: string;
-  };
-  showNotification: (notification: {
-    title: string;
-    message: string;
-    status: string;
-  }) => {};
-  hideNotification: () => {};
-};
+import { NotificationProps } from '@/types/index';
 
 function NewsletterRegistration() {
   const inputRef = useRef<HTMLInputElement>(null);

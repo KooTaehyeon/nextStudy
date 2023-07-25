@@ -13,3 +13,16 @@ export type dumyProps = {
 export type Props = {
   children: React.ReactNode;
 };
+export type NotificationProps = {
+  notification: null | {
+    title: string;
+    message: string;
+    status: string;
+  };
+  showNotification: (notification: {
+    title: string;
+    message: string;
+    status: string;
+  }) => {};
+  hideNotification: () => {};
+};

@@ -7,7 +7,6 @@ function AuthForm() {
   function switchAuthModeHandler() {
     setIsLogin((prevState) => !prevState);
   }
-
   return (
     <section className={classes.auth}>
       <h1>{isLogin ? 'Login' : 'Sign Up'}</h1>

@@ -10,6 +10,9 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
+  if (req.method !== 'POST') {
+    return;
+  }
   const data = req.body;
 
   const { email, password } = data;

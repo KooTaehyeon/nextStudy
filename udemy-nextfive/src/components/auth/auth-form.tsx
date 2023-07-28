@@ -2,7 +2,7 @@ import { useRef, useState } from 'react';
 import classes from './auth-form.module.css';
 
 async function createUser(email: string, password: string) {
-  const response = await fetch('api/singup', {
+  const response = await fetch('api/auth/singup', {
     method: 'POST',
     body: JSON.stringify({ email, password }),
     headers: {

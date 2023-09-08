@@ -52,7 +52,7 @@ const EventDetailPage = (props: {
         />
         <meta property='product:availability' content='in stock' />
         <meta property='product:price:amount' content={`${30000}`} />
-        <meta property='product:condition' content='basic' />
+        <meta property='product:condition' content='used' />
         <meta
           property='product:plural_title'
           content={event.title.toLocaleLowerCase()}
@@ -60,6 +60,7 @@ const EventDetailPage = (props: {
         <meta property='product:price:currency' content='KRW' />
         <meta property='product:item_group_id' content={`${event.id}`} />
         <meta property='product:retailer_item_id' content={`${event.id}`} />
+        <meta property='product:catalog_id' content={`199599866306511`} />
       </Head>
 
       <EventSummary title={event.title} />

@@ -9,7 +9,6 @@ export default function App({ Component, pageProps }: AppProps) {
     <NotificationContextProvider>
       <Layout>
         <Head />
-
         <Component {...pageProps} />
       </Layout>
     </NotificationContextProvider>

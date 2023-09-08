@@ -58,9 +58,12 @@ const EventDetailPage = (props: {
           content={event.title.toLocaleLowerCase()}
         />
         <meta property='product:price:currency' content='KRW' />
-        <meta property='product:item_group_id' content={`${event.id}`} />
-        <meta property='product:retailer_item_id' content={`${event.id}`} />
-        <meta property='product:catalog_id' content={`199599866306511`} />
+        <meta property='product:item_group_id' content={`2521457291365392`} />
+        <meta
+          property='product:retailer_item_id'
+          content={`2521457291365392`}
+        />
+        <meta property='product:catalog_id' content={`2521457291365392`} />
       </Head>
 
       <EventSummary title={event.title} />

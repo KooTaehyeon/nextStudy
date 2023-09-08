@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import {
   getEventById,
@@ -11,7 +11,7 @@ import EventContent from '@/components/events/event-detail/event-content';
 import ErrorAlert from '@/components/ui/error-alert';
 import Head from 'next/head';
 import Comments from '@/components/input/comments';
-
+import * as fpixel from '../../utils/fpixel';
 const EventDetailPage = (props: {
   selectedEvent: {
     id: string;
@@ -28,7 +28,21 @@ const EventDetailPage = (props: {
   // console.log('eventId', typeof eventId);
   // const event = getEventById(eventId as string);
   // console.log(event, 'eventdes');
-
+  const currentUrl =
+    typeof window !== 'undefined' ? window.location.href : null;
+  console.log(currentUrl);
+  useEffect(() => {
+    const value = {
+      id: event.id,
+      brand: event.title,
+      value: '30000' + event.id,
+      title: event.title,
+      currency: 'KRW',
+      availability: 'in stock',
+      url: currentUrl,
+    };
+    fpixel.view(value);
+  }, [currentUrl, event.id, event.title]);
   if (!event) {
     return (
       <>
@@ -39,9 +53,7 @@ const EventDetailPage = (props: {
     );
   }
   console.log(event.title.toLocaleLowerCase());
-  const currentUrl =
-    typeof window !== 'undefined' ? window.location.href : null;
-  console.log(currentUrl);
+
   return (
     <>
       <Head>

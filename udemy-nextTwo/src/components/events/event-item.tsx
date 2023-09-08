@@ -32,7 +32,6 @@ const EventItem = (props: any) => {
     };
   }, [router.events]);
   const onClick = async () => {
-    console.log('실행');
     const value = {
       id: id,
       brand: title,
@@ -43,7 +42,7 @@ const EventItem = (props: any) => {
     };
 
     const handleRouteChange = () => {
-      fpixel.view();
+      fpixel.view({ value });
     };
     router.events.on('routeChangeComplete', handleRouteChange);
     return () => {

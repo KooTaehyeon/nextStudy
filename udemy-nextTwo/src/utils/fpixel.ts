@@ -7,5 +7,5 @@ export const pageview = () => {
 
 export const view = (options = {}) => {
   // @ts-ignore
-  window.fbq('track', 'ViewContent');
+  window.fbq('track', 'ViewContent', options);
 };

@@ -29,11 +29,10 @@ const FilteredEventPage = () =>
         <meta name='description' content={`A list of filtered Events`} />
       </Head>
     );
-    console.log('data', data);
+
     const [events, setEvents] = useState<any[]>([]);
     const router = useRouter();
     const filterData: any = router.query.slug;
-    console.log(filterData, 'filterData');
 
     useEffect(() => {
       if (data) {
@@ -51,19 +50,20 @@ const FilteredEventPage = () =>
     if (!events) {
       return <p className='conter'>Loading...</p>;
     }
-    const filteredYear = filterData[0];
-    const filteredMonth = filterData[1];
 
-    const numYear = +filteredYear;
-    const numMonth = +filteredMonth;
+    // const filteredYear = filterData[0];
+    // const filteredMonth = filterData[1];
+
+    const numYear = filterData;
+    const numMonth = filterData;
 
     pageHeadData = (
       <Head>
         <title>{'Filter Events'}</title>
-        <meta
+        {/* <meta
           name='description'
-          content={`All Events for ${numMonth}/${numYear}`}
-        />
+          content={`All Events for ${numMonth[1]}/${numYear[0]}`}
+        /> */}
       </Head>
     );
 

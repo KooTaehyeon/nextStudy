@@ -24,9 +24,9 @@ export default function Head() {
         ]}
         openGraph={{
           images: [{ url: '/assets/icons/common/logo-title.svg', alt: 'logo' }],
-          title: 'HEAD_NAME',
-          description: 'HEAD_DESCRIPTION',
-          siteName: 'HEAD_NAME',
+          title: 'Head_name',
+          description: 'head_Description',
+          siteName: 'Head_name',
           type: 'website',
         }}
       />

@@ -30,6 +30,7 @@ const EventItem = (props: any) => {
       currency: '원',
       test: 'txt',
     };
+    console.log(value);
     const handleRouteChange = () => {
       fpixel.view({ value });
     };
@@ -41,22 +42,7 @@ const EventItem = (props: any) => {
 
   return (
     <>
-      {' '}
-      <Head>
-        <meta
-          property='og:url'
-          content={`https://barofish.com${router.pathname}?id=${router?.query.id}`}
-        />
-        <meta property='product:brand' content={`${title}`} />
-        <meta property='product:availability' content='in stock' />
-        <meta property='product:price:amount' content={`${30000}`} />
-        <meta property='product:condition' content='basic' />
-        <meta property='product:plural_title' content={title} />
-        <meta property='product:price:currency' content='KRW' />
-        <meta property='product:item_group_id' content={`${id}`} />
-        <meta property='product:retailer_item_id' content={`${id}`} />
-      </Head>
-      <li className={styles.item} onClick={onClick}>
+      <li className={styles.item}>
         <Image
           src={image}
           alt={title}
@@ -77,7 +63,7 @@ const EventItem = (props: any) => {
               <address>{formattedAddress}</address>
             </div>
             <div className={styles.actions}>
-              <Button link={exploreLink}>
+              <Button link={exploreLink} onClick={onClick}>
                 Explore Event
                 <span className={styles.icon}>
                   <ArrowRightIcon />

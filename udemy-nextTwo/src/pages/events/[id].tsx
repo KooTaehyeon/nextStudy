@@ -21,6 +21,7 @@ const EventDetailPage = (props: {
     description: string;
   };
 }) => {
+  const router = useRouter();
   const event = props.selectedEvent;
 
   // console.log('eventId', typeof eventId);
@@ -40,9 +41,20 @@ const EventDetailPage = (props: {
   return (
     <>
       <Head>
-        <title>{event.title}</title>
-        <meta name='description' content={event.description} />
+        <meta
+          property='og:url'
+          content={`https://barofish.com${router.pathname}?id=${router?.query.id}`}
+        />
+        <meta property='product:brand' content={`${event.title}`} />
+        <meta property='product:availability' content='in stock' />
+        <meta property='product:price:amount' content={`${30000}`} />
+        <meta property='product:condition' content='basic' />
+        <meta property='product:plural_title' content={event.title} />
+        <meta property='product:price:currency' content='KRW' />
+        <meta property='product:item_group_id' content={`${event.id}`} />
+        <meta property='product:retailer_item_id' content={`${event.id}`} />
       </Head>
+
       <EventSummary title={event.title} />
       <EventLogistics
         date={event.date}

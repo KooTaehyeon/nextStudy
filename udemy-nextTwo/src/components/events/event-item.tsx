@@ -33,7 +33,7 @@ const EventItem = (props: any) => {
     };
 
     const handleRouteChange = () => {
-      fpixel.view({ value });
+      fpixel.view();
     };
     router.events.on('routeChangeComplete', handleRouteChange);
     return () => {

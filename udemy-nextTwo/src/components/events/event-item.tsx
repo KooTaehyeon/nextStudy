@@ -21,16 +21,17 @@ const EventItem = (props: any) => {
   });
   const formattedAddress = location.replace(',', ' \n');
   const exploreLink = `/events/${id}`;
-  const onClick = () => {
+  const onClick = async () => {
+    console.log('실행');
     const value = {
       id: id,
       brand: title,
       value: '30000',
       title: title,
-      currency: '원',
+      currency: 'KRW',
       test: 'txt',
     };
-    console.log(value);
+
     const handleRouteChange = () => {
       fpixel.view({ value });
     };
@@ -62,8 +63,8 @@ const EventItem = (props: any) => {
               <AddressIcon />
               <address>{formattedAddress}</address>
             </div>
-            <div className={styles.actions}>
-              <Button link={exploreLink} onClick={onClick}>
+            <div className={styles.actions} onClick={onClick}>
+              <Button link={exploreLink}>
                 Explore Event
                 <span className={styles.icon}>
                   <ArrowRightIcon />

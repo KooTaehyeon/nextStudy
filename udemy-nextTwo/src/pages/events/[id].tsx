@@ -31,18 +31,18 @@ const EventDetailPage = (props: {
   const currentUrl =
     typeof window !== 'undefined' ? window.location.href : null;
   console.log(currentUrl);
-  useEffect(() => {
-    const value = {
-      id: event.id,
-      brand: event.title,
-      value: '30000' + event.id,
-      title: event.title,
-      currency: 'KRW',
-      availability: 'in stock',
-      url: currentUrl,
-    };
-    fpixel.view(value);
-  }, [currentUrl, event.id, event.title]);
+  // useEffect(() => {
+  //   const value = {
+  //     id: event.id,
+  //     brand: event.title,
+  //     value: '30000' + event.id,
+  //     title: event.title,
+  //     currency: 'KRW',
+  //     availability: 'in stock',
+  //     url: currentUrl,
+  //   };
+  //   fpixel.view(value);
+  // }, [currentUrl, event.id, event.title]);
   if (!event) {
     return (
       <>

@@ -21,7 +21,8 @@ const EventItem = (props: any) => {
   });
   const formattedAddress = location.replace(',', ' \n');
   const exploreLink = `/events/${id}`;
-
+  const currentUrl =
+    typeof window !== 'undefined' ? window.location.href : null;
   useEffect(() => {
     const handleRouteChange = () => {
       fpixel.view();
@@ -32,13 +33,15 @@ const EventItem = (props: any) => {
     };
   }, [router.events]);
   const onClick = async () => {
+    console.log('실행');
     const value = {
       id: id,
       brand: title,
-      value: '30000',
+      value: '30000' + id,
       title: title,
       currency: 'KRW',
-      test: 'txt',
+      availability: 'in stock',
+      url: currentUrl,
     };
 
     const handleRouteChange = () => {

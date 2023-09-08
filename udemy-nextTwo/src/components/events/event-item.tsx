@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import React from 'react';
+import React, { useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import styles from '../../styles/event-item.module.css';
@@ -21,6 +21,16 @@ const EventItem = (props: any) => {
   });
   const formattedAddress = location.replace(',', ' \n');
   const exploreLink = `/events/${id}`;
+
+  useEffect(() => {
+    const handleRouteChange = () => {
+      fpixel.view();
+    };
+    router.events.on('routeChangeComplete', handleRouteChange);
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange);
+    };
+  }, [router.events]);
   const onClick = async () => {
     console.log('실행');
     const value = {

@@ -11,6 +11,7 @@ import EventContent from '@/components/events/event-detail/event-content';
 import ErrorAlert from '@/components/ui/error-alert';
 import Head from 'next/head';
 import Comments from '@/components/input/comments';
+
 const EventDetailPage = (props: {
   selectedEvent: {
     id: string;
@@ -38,14 +39,13 @@ const EventDetailPage = (props: {
     );
   }
   console.log(event.title.toLocaleLowerCase());
-
+  const currentUrl =
+    typeof window !== 'undefined' ? window.location.href : null;
+  console.log(currentUrl);
   return (
     <>
       <Head>
-        <meta
-          property='og:url'
-          content={`https://barofish.com${router.pathname}?id=${router?.query.id}`}
-        />
+        <meta property='og:url' content={`${currentUrl}`} />
         <meta
           property='product:brand'
           content={`${event.title.toLocaleLowerCase()}`}

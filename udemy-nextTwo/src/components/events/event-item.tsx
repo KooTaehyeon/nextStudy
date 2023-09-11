@@ -52,24 +52,7 @@ const EventItem = (props: any) => {
       router.events.off('routeChangeComplete', handleRouteChange);
     };
   };
-  const onPixel = () => {
-    const value = {
-      id: id,
-      brand: title,
-      value: '30000' + id,
-      title: title,
-      currency: 'KRW',
-      availability: 'in stock',
-      url: currentUrl,
-    };
 
-    fpixel.AddToCart({
-      value: '30000' + id,
-      content_ids: id,
-      currency: 'KRW',
-    });
-    fpixel.Purchase({ value: '30000' + id, currency: 'KRW' });
-  };
   return (
     <>
       <li className={styles.item}>
@@ -83,7 +66,7 @@ const EventItem = (props: any) => {
         />
         <div className={styles.content}>
           <div className={styles.summary}>
-            <h2 onClick={onPixel}>{title}</h2>
+            <h2>{title}</h2>
             <div className={styles.date}>
               <DateIcon />
               <time>{humanReadableDate}</time>

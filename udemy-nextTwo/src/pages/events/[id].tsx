@@ -25,24 +25,9 @@ const EventDetailPage = (props: {
   const router = useRouter();
   const event = props.selectedEvent;
 
-  // console.log('eventId', typeof eventId);
-  // const event = getEventById(eventId as string);
-  // console.log(event, 'eventdes');
   const currentUrl =
     typeof window !== 'undefined' ? window.location.href : null;
-  console.log(currentUrl);
-  // useEffect(() => {
-  //   const value = {
-  //     id: event.id,
-  //     brand: event.title,
-  //     value: '30000' + event.id,
-  //     title: event.title,
-  //     currency: 'KRW',
-  //     availability: 'in stock',
-  //     url: currentUrl,
-  //   };
-  //   fpixel.view(value);
-  // }, [currentUrl, event.id, event.title]);
+
   if (!event) {
     return (
       <>
@@ -53,7 +38,14 @@ const EventDetailPage = (props: {
     );
   }
   console.log(event.title.toLocaleLowerCase());
-
+  const onPixel = () => {
+    fpixel.AddToCart({
+      value: '30000',
+      content_ids: event.id,
+      currency: 'KRW',
+    });
+    fpixel.Purchase({ value: '30000', currency: 'KRW' });
+  };
   return (
     <>
       <Head>
@@ -77,18 +69,19 @@ const EventDetailPage = (props: {
         />
         <meta property='product:catalog_id' content={`2521457291365392`} />
       </Head>
-
-      <EventSummary title={event.title} />
-      <EventLogistics
-        date={event.date}
-        address={event.loctation}
-        image={event.image}
-        imageAlt={'사진'}
-      />
-      <EventContent>
-        <p>{event.description}</p>
-      </EventContent>
-      <Comments eventId={event.id} />
+      <div onClick={onPixel} style={{ cursor: 'pointer' }}>
+        <EventSummary title={event.title} />
+        <EventLogistics
+          date={event.date}
+          address={event.loctation}
+          image={event.image}
+          imageAlt={'사진'}
+        />
+        <EventContent>
+          <p>{event.description}</p>
+        </EventContent>
+        <Comments eventId={event.id} />
+      </div>
     </>
   );
 };

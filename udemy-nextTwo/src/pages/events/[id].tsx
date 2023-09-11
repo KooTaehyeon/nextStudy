@@ -43,8 +43,14 @@ const EventDetailPage = (props: {
       value: '30000',
       content_ids: event.id,
       currency: 'KRW',
+      contents: event.title,
     });
-    fpixel.Purchase({ value: '30000', currency: 'KRW' });
+    fpixel.Purchase({
+      value: '30000',
+      currency: 'KRW',
+      contents: event.title,
+      content_ids: event.id,
+    });
   };
   return (
     <>

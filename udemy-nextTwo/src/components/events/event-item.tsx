@@ -35,13 +35,14 @@ const EventItem = (props: any) => {
   const onClick = async () => {
     console.log('실행');
     const value = {
-      id: id,
-      brand: title,
-      value: '30000' + id,
-      title: title,
+      content_ids: id,
+      contents: title,
+      value: '30000',
+      content_name: title,
       currency: 'KRW',
       availability: 'in stock',
       url: currentUrl,
+      content_category: title,
     };
 
     const handleRouteChange = () => {
